@@ -10,7 +10,11 @@ public class Cell {
 	public String getName(){
 		return name;
 	}
-	public void setMonster(Monster monster){
-		this.monster=monster;
+	public Monster getMonster() {
+	    return monster;
+	}
+
+	public void setMonster(Monster monster) {
+	    this.monster = monster;
 	}
 }

@@ -9,24 +9,26 @@ import game.engine.monsters.Monster;
 
 public class Board {
 
-    private final Cell[][] boardCells;
+	private final Cell[][] boardCells;
 
-    private static ArrayList<Monster> stationedMonsters;
+	private static ArrayList<Monster> stationedMonsters;
 
-    private static final ArrayList<Card> originalCards = new ArrayList<Card>();
+	private static ArrayList<Card> originalCards;
 
-    private static ArrayList<Card> cards;
+	public static ArrayList<Card> cards;
 
-    public Board(ArrayList<Card> readCards) {
+	public Board(ArrayList<Card> readCards) {
 
-        boardCells = new Cell[Constants.BOARD_ROWS][Constants.BOARD_COLS];
+	    boardCells=new Cell[Constants.BOARD_ROWS][Constants.BOARD_COLS];
 
-        stationedMonsters = new ArrayList<Monster>();
+	    stationedMonsters = new ArrayList<>();
 
-        cards = new ArrayList<Card>();
+	    cards = new ArrayList<>();
 
-        originalCards.addAll(readCards);
-    }
+	    originalCards = new ArrayList<>();
+
+	    originalCards.addAll(readCards);
+	}
 
 	public Cell[][] getBoardCells() {
 		return boardCells;
@@ -48,9 +50,10 @@ public class Board {
 		Board.cards = cards;
 	}
 
-	public static ArrayList<Card> getOriginalcards() {
-		return originalCards;
+	public static ArrayList<Card> getOriginalCards() {
+	    return originalCards;
 	}
+
 	
 
 }

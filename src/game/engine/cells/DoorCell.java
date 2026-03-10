@@ -1,6 +1,7 @@
 package game.engine.cells;
 import game.engine.Role;
-public class DoorCell extends Cell {
+import game.engine.interfaces.CanisterModifier;
+public class DoorCell extends Cell implements CanisterModifier { 
 	private final Role role;
 	private final int energy;
 	private boolean activated;

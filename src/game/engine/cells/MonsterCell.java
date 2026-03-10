@@ -6,7 +6,8 @@ public class MonsterCell extends Cell {
 		super(name);
 		this.cellMonster=cellMonster;
 	}
-	public Monster getcellMonster(){
+	public Monster getCellMonster(){
 		return cellMonster;
 	}
+
 }

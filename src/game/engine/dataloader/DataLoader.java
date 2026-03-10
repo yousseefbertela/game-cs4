@@ -24,53 +24,55 @@ import game.engine.monsters.Schemer;
 
 public class DataLoader {
 
-    public static final String CARDS_FILE_NAME = "cards.csv";
+	public static final String CARDS_FILE_NAME = "cards.csv";
     public static final String CELLS_FILE_NAME = "cells.csv";
-    public static final String MONSTERS_FILE_NAME = "monsters.csv";
+    private static final String MONSTERS_FILE_NAME = "monsters.csv";
 
     public static ArrayList<Card> readCards() throws IOException {
-        ArrayList<Card> cards = new ArrayList<Card>();
+
+        ArrayList<Card> cards = new ArrayList<>();
+
         BufferedReader br = new BufferedReader(new FileReader(CARDS_FILE_NAME));
 
         String line;
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(",");
 
-            String cardType = parts[0].trim();
-            String name = parts[1].trim();
-            String description = parts[2].trim();
-            int rarity = Integer.parseInt(parts[3].trim());
+        while((line = br.readLine()) != null) {
 
-            switch (cardType) {
-                case "SwapperCard":
-                    cards.add(new SwapperCard(name, description, rarity));
-                    break;
+        	String[] data = line.split(",", -1);
 
-                case "ShieldCard":
-                    cards.add(new ShieldCard(name, description, rarity));
-                    break;
+            String type = data[0].trim();
+            String name = data[1].trim();
+            String description = data[2].trim();
+            int rarity = Integer.parseInt(data[3].trim());
 
-                case "EnergyStealCard":
-                    int energy = Integer.parseInt(parts[4].trim());
-                    cards.add(new EnergyStealCard(name, description, rarity, energy));
-                    break;
+            if(type.equals("SwapperCard")) {
+                cards.add(new SwapperCard(name, description, rarity));
+            }
 
-                case "StartOverCard":
-                    boolean lucky = Boolean.parseBoolean(parts[4].trim());
-                    cards.add(new StartOverCard(name, description, rarity, lucky));
-                    break;
+            else if(type.equals("ShieldCard")) {
+                cards.add(new ShieldCard(name, description, rarity));
+            }
 
-                case "ConfusionCard":
-                    int duration = Integer.parseInt(parts[4].trim());
-                    cards.add(new ConfusionCard(name, description, rarity, duration));
-                    break;
+            else if(type.equals("EnergyStealCard")) {
+                int energy = Integer.parseInt(data[4].trim());
+                cards.add(new EnergyStealCard(name, description, rarity, energy));
+            }
+
+            else if(type.equals("StartOverCard")) {
+                boolean lucky = Boolean.parseBoolean(data[4].trim());
+                cards.add(new StartOverCard(name, description, rarity, lucky));
+            }
+
+            else if(type.equals("ConfusionCard")) {
+                int duration = Integer.parseInt(data[4].trim());
+                cards.add(new ConfusionCard(name, description, rarity, duration));
             }
         }
 
         br.close();
+
         return cards;
     }
-
     public static ArrayList<Cell> readCells() throws IOException {
         ArrayList<Cell> cells = new ArrayList<Cell>();
         BufferedReader br = new BufferedReader(new FileReader(CELLS_FILE_NAME));
@@ -109,26 +111,26 @@ public class DataLoader {
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(",");
 
-            String monsterType = parts[0].trim();
+            String monsterType = parts[0].trim().toLowerCase();
             String name = parts[1].trim();
             String description = parts[2].trim();
             Role role = Role.valueOf(parts[3].trim());
             int energy = Integer.parseInt(parts[4].trim());
 
             switch (monsterType) {
-                case "Dasher":
+                case "dasher":
                     monsters.add(new Dasher(name, description, role, energy));
                     break;
 
-                case "Dynamo":
+                case "dynamo":
                     monsters.add(new Dynamo(name, description, role, energy));
                     break;
 
-                case "MultiTasker":
+                case "multitasker":
                     monsters.add(new MultiTasker(name, description, role, energy));
                     break;
 
-                case "Schemer":
+                case "schemer":
                     monsters.add(new Schemer(name, description, role, energy));
                     break;
             }
