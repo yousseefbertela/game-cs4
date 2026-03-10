@@ -45,25 +45,25 @@ public class DataLoader {
             String description = data[2].trim();
             int rarity = Integer.parseInt(data[3].trim());
 
-            if(type.equals("SwapperCard")) {
+            if(type.equals("SWAPPER")) {
                 cards.add(new SwapperCard(name, description, rarity));
             }
 
-            else if(type.equals("ShieldCard")) {
+            else if(type.equals("SHIELD")) {
                 cards.add(new ShieldCard(name, description, rarity));
             }
 
-            else if(type.equals("EnergyStealCard")) {
+            else if(type.equals("ENERGYSTEAL")) {
                 int energy = Integer.parseInt(data[4].trim());
                 cards.add(new EnergyStealCard(name, description, rarity, energy));
             }
 
-            else if(type.equals("StartOverCard")) {
+            else if(type.equals("STARTOVER")) {
                 boolean lucky = Boolean.parseBoolean(data[4].trim());
                 cards.add(new StartOverCard(name, description, rarity, lucky));
             }
 
-            else if(type.equals("ConfusionCard")) {
+            else if(type.equals("CONFUSION")) {
                 int duration = Integer.parseInt(data[4].trim());
                 cards.add(new ConfusionCard(name, description, rarity, duration));
             }

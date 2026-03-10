@@ -1,8 +1,5 @@
 package game.engine;
-
 import java.util.ArrayList;
-
-
 import game.engine.cards.Card;
 import game.engine.cells.Cell;
 import game.engine.monsters.Monster;
@@ -37,17 +34,16 @@ public class Board {
 	public static ArrayList<Monster> getStationedMonsters() {
 		return stationedMonsters;
 	}
+	public static ArrayList<Card> readCards() { 
+		return cards; 
+	} 
 
 	public static void setStationedMonsters(ArrayList<Monster> stationedMonsters) {
 		Board.stationedMonsters = stationedMonsters;
 	}
 
-	public static ArrayList<Card> getCards() {
-		return cards;
-	}
-
 	public static void setCards(ArrayList<Card> cards) {
-		Board.cards = cards;
+		Board.cards =new ArrayList<>(cards);
 	}
 
 	public static ArrayList<Card> getOriginalCards() {
