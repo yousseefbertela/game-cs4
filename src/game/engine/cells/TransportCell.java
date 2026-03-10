@@ -6,7 +6,7 @@ public abstract class TransportCell extends Cell {
 		super(name);
 		this.effect=effect;
 	}
-	public int geteffect(){
+	public int getEffect() {
 		return effect;
 	}
 }

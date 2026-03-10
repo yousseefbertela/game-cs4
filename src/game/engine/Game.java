@@ -35,8 +35,9 @@ public class Game {
         ArrayList<Monster> matchingMonsters = new ArrayList<>();
 
         for (Monster monster : this.allMonsters) {
-            if (monster.getOriginalRole() == role) {
-                matchingMonsters.add(monster);
+            if (monster.getRole() == role) {
+            	if(!matchingMonsters.contains(monster))
+            		matchingMonsters.add(monster);
             }
         }
 

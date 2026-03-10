@@ -7,5 +7,10 @@ public class Cell {
 		this.name=name;
 		this.monster=null;
 	}
-	
+	public String getName(){
+		return name;
+	}
+	public void setMonster(Monster monster){
+		this.monster=monster;
+	}
 }

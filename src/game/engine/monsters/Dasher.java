@@ -6,10 +6,10 @@ public class Dasher extends Monster {
 		super(name,description,role,energy);
 		this.momentumTurns=0;
 	}
-	public int getmomentumTurns(){
+	public int getMomentumTurns(){
 		return momentumTurns;
 	}
-	public void setmomentumTurns(int momentumTurns){
+	public void setMomentumTurns(int momentumTurns){
 		if(momentumTurns<0){
 			this.momentumTurns=0;
 		}
