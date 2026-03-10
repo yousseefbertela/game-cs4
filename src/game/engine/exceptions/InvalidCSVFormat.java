@@ -11,6 +11,12 @@ public class InvalidCSVFormat extends Exception {
 	    super(message);
 	    this.inputLine = inputLine;
 	}
+	public String getInputLine(){
+		return inputLine;
+	}
+	public void setInputLine(String inputLine){
+		this.inputLine=inputLine;
+	}
 	
 
 }
