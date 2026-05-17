@@ -17,6 +17,7 @@ public class MonsterPanel extends VBox {
     private final boolean isPlayer;
 
     private final Label header = new Label();
+    private final Label nameLabel = new Label();
     private final Label typeLabel = new Label();
     private final Label originalRoleLabel = new Label();
     private final Label currentRoleLabel = new Label();
@@ -34,6 +35,7 @@ public class MonsterPanel extends VBox {
         getStyleClass().add(monster.getOriginalRole() == Role.SCARER ? "panel-scarer" : "panel-laugher");
 
         header.getStyleClass().add("monster-name");
+        nameLabel.getStyleClass().add("monster-meta");
         typeLabel.getStyleClass().add("monster-type");
         originalRoleLabel.getStyleClass().add("monster-meta");
         currentRoleLabel.getStyleClass().add("monster-meta");
@@ -57,7 +59,7 @@ public class MonsterPanel extends VBox {
         VBox roles = new VBox(2, roleHeading, originalRoleLabel, currentRoleLabel);
         VBox stats = new VBox(2, statHeading, positionLabel, energyLabel, energyBar, statusLabel);
 
-        getChildren().addAll(topRow, typeLabel, roles, stats);
+        getChildren().addAll(topRow, nameLabel, typeLabel, roles, stats);
         refresh(false);
     }
 
@@ -71,7 +73,8 @@ public class MonsterPanel extends VBox {
     }
 
     public void refresh(boolean energyChanged) {
-        header.setText((isPlayer ? "YOU — " : "OPPONENT — ") + monster.getName());
+        header.setText(isPlayer ? "YOU" : "OPPONENT");
+        nameLabel.setText("Name: " + monster.getName());
         typeLabel.setText("Type: " + monster.getClass().getSimpleName());
         originalRoleLabel.setText("Original role: " + monster.getOriginalRole());
         boolean confused = monster.isConfused();
@@ -89,7 +92,7 @@ public class MonsterPanel extends VBox {
 
         StringBuilder st = new StringBuilder();
         if (monster.isShielded()) st.append("[Shield]  ");
-        if (monster.isFrozen()) st.append("[Frozen — skips next turn]  ");
+        if (monster.isFrozen()) st.append("[Frozen - skips next turn]  ");
         if (confused) st.append("[Confusion x").append(monster.getConfusionTurns()).append("]  ");
         if (monster instanceof Dasher) {
             int m = ((Dasher) monster).getMomentumTurns();

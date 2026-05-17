@@ -47,7 +47,7 @@ public class GameController {
         view.getPowerupBtn().setOnAction(e -> onArmPowerup());
         view.getQuitBtn().setOnAction(e -> confirmQuit());
 
-        view.appendLog("Game started. You are " + role + " — playing as "
+        view.appendLog("Game started. You are " + role + " - playing as "
                 + game.getPlayer().getName() + " (" + game.getPlayer().getClass().getSimpleName() + ").");
         view.appendLog("Opponent: " + game.getOpponent().getName()
                 + " (" + game.getOpponent().getClass().getSimpleName() + ", " + game.getOpponent().getRole() + ").");
@@ -61,12 +61,64 @@ public class GameController {
 
     public GameView getView() { return view; }
 
+    public static final int CHEAT_ENERGY_GAIN = 100;
+
+    public void cheatTeleportToFinish() {
+        if (gameOver) return;
+        Monster cur = game.getCurrent();
+        int oldPos = cur.getPosition();
+        cur.setPosition(Constants.WINNING_POSITION);
+        view.appendLog("CHEAT (W): " + cur.getName()
+                + " teleported from cell " + oldPos
+                + " to cell " + Constants.WINNING_POSITION + ".");
+        refreshAll(false, false);
+        view.refreshAllCells();
+        renderMonsterMarkers();
+
+        Monster winner = game.getWinner();
+        if (winner != null) {
+            gameOver = true;
+            view.getRollBtn().setDisable(true);
+            view.getPowerupBtn().setDisable(true);
+            view.appendLog("GAME OVER - " + winner.getName() + " wins!");
+            System.setOut(originalOut);
+            PauseTransition pt = new PauseTransition(Duration.seconds(1.2));
+            pt.setOnFinished(e -> app.showEnd(winner, game.getPlayer(), game.getOpponent()));
+            pt.play();
+        }
+    }
+
+    public void cheatGainEnergy() {
+        if (gameOver) return;
+        Monster cur = game.getCurrent();
+        int before = cur.getEnergy();
+        cur.alterEnergy(CHEAT_ENERGY_GAIN);
+        view.appendLog("CHEAT (E): " + cur.getName()
+                + " energy " + before + " -> " + cur.getEnergy()
+                + " (+" + (cur.getEnergy() - before) + ").");
+        refreshAll(cur == game.getPlayer(), cur == game.getOpponent());
+
+        Monster winner = game.getWinner();
+        if (winner != null) {
+            gameOver = true;
+            view.getRollBtn().setDisable(true);
+            view.getPowerupBtn().setDisable(true);
+            view.appendLog("GAME OVER - " + winner.getName() + " wins!");
+            System.setOut(originalOut);
+            PauseTransition pt = new PauseTransition(Duration.seconds(1.2));
+            pt.setOnFinished(e -> app.showEnd(winner, game.getPlayer(), game.getOpponent()));
+            pt.play();
+        }
+    }
+
+    public boolean isGameOver() { return gameOver; }
+
     private void onArmPowerup() {
         if (gameOver) return;
         Monster cur = game.getCurrent();
         if (powerupArmed) {
             powerupArmed = false;
-            view.appendLog(cur.getName() + " stood down — powerup will NOT trigger this turn.");
+            view.appendLog(cur.getName() + " stood down - powerup will NOT trigger this turn.");
             view.getPowerupBtn().setText("Activate Powerup (500)");
             view.getPowerupBtn().getStyleClass().remove("armed");
             return;
@@ -78,8 +130,8 @@ public class GameController {
             return;
         }
         powerupArmed = true;
-        view.appendLog(cur.getName() + " armed powerup — will trigger before next dice roll.");
-        view.getPowerupBtn().setText("Powerup ARMED — click again to cancel");
+        view.appendLog(cur.getName() + " armed powerup - will trigger before next dice roll.");
+        view.getPowerupBtn().setText("Powerup ARMED - click again to cancel");
         view.getPowerupBtn().getStyleClass().add("armed");
     }
 
@@ -130,7 +182,7 @@ public class GameController {
             view.getPowerupBtn().setText("Activate Powerup (500)");
             view.getPowerupBtn().getStyleClass().remove("armed");
             handleInvalidMove(ex, cur);
-            view.getDiceLabel().setText("Dice: " + roll + " — move blocked!");
+            view.getDiceLabel().setText("Dice: " + roll + " - move blocked!");
             refreshAll(false, false);
             return;
         }
@@ -144,7 +196,7 @@ public class GameController {
         view.getPowerupBtn().getStyleClass().remove("armed");
 
         if (frozenBefore) {
-            view.getFreezeBanner().setText(cur.getName() + " was FROZEN — turn skipped!");
+            view.getFreezeBanner().setText(cur.getName() + " was FROZEN - turn skipped!");
             view.getFreezeBanner().setVisible(true);
             view.getFreezeBanner().setManaged(true);
             view.appendLog(cur.getName() + " was frozen and skipped their turn.");
@@ -181,7 +233,7 @@ public class GameController {
             gameOver = true;
             view.getRollBtn().setDisable(true);
             view.getPowerupBtn().setDisable(true);
-            view.appendLog("GAME OVER — " + winner.getName() + " wins!");
+            view.appendLog("GAME OVER - " + winner.getName() + " wins!");
             System.setOut(originalOut);
             PauseTransition pt = new PauseTransition(Duration.seconds(1.4));
             pt.setOnFinished(e -> app.showEnd(winner, game.getPlayer(), game.getOpponent()));
@@ -230,7 +282,7 @@ public class GameController {
     private void showCardDrawn(Card card) {
         view.getCardName().setText(card.getName());
         view.getCardEffect().setText(card.getDescription());
-        view.appendLog("Card drawn: " + card.getName() + " — " + card.getDescription());
+        view.appendLog("Card drawn: " + card.getName() + " - " + card.getDescription());
         if (System.getProperty("doordash.auto") == null)
             Dialogs.info("Card drawn", card.getName() + "\n\n" + card.getDescription());
     }

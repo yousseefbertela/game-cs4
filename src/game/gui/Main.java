@@ -57,6 +57,7 @@ public class Main extends Application {
     }
 
     public void showStart() {
+        clearKeyBindings();
         root.getChildren().setAll(new StartView(this).getRoot());
     }
 
@@ -64,19 +65,45 @@ public class Main extends Application {
         try {
             GameController controller = new GameController(this, role);
             root.getChildren().setAll(controller.getView().getRoot());
+            installCheatKeys(controller);
         } catch (Exception ex) {
             Dialogs.error("Cannot start game", ex.getMessage());
         }
     }
 
     public void showInstructions() {
+        clearKeyBindings();
         root.getChildren().setAll(new InstructionsView(this).getRoot());
     }
 
     public void showEnd(game.engine.monsters.Monster winner,
                         game.engine.monsters.Monster player,
                         game.engine.monsters.Monster opponent) {
+        clearKeyBindings();
         root.getChildren().setAll(new EndView(this, winner, player, opponent).getRoot());
+    }
+
+    private void installCheatKeys(GameController controller) {
+        primaryStage.getScene().setOnKeyPressed(ev -> {
+            if (controller.isGameOver()) return;
+            switch (ev.getCode()) {
+                case W:
+                    controller.cheatTeleportToFinish();
+                    ev.consume();
+                    break;
+                case E:
+                    controller.cheatGainEnergy();
+                    ev.consume();
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
+    private void clearKeyBindings() {
+        if (primaryStage != null && primaryStage.getScene() != null)
+            primaryStage.getScene().setOnKeyPressed(null);
     }
 
     public Stage getPrimaryStage() {

@@ -15,7 +15,7 @@ public class EndView {
     private final StackPane root;
 
     public EndView(Main app, Monster winner, Monster player, Monster opponent) {
-        Label crown = new Label("★");
+        Label crown = new Label("*");
         crown.getStyleClass().add("crown");
 
         boolean playerWon = (winner == player);
@@ -23,7 +23,7 @@ public class EndView {
         headline.getStyleClass().add(playerWon ? "victory-title" : "defeat-title");
 
         Label announce = new Label(winner.getName()
-                + " (" + winner.getOriginalRole() + " — " + winner.getClass().getSimpleName() + ") wins the touchdown!");
+                + " (" + winner.getOriginalRole() + " - " + winner.getClass().getSimpleName() + ") wins the touchdown!");
         announce.getStyleClass().add("end-announce");
         announce.setWrapText(true);
 
@@ -58,7 +58,7 @@ public class EndView {
     }
 
     private VBox monsterCard(String header, Monster m, boolean winner) {
-        Label h = new Label(header + (winner ? " — WINNER" : ""));
+        Label h = new Label(header + (winner ? " - WINNER" : ""));
         h.getStyleClass().add("end-stat-header");
 
         Label name = new Label(m.getName());

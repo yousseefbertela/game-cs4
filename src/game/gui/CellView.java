@@ -86,19 +86,19 @@ public class CellView extends StackPane {
                 getStyleClass().add("cell-door-used");
                 kindLabel.setText(prefix + " DOOR (X)");
             }
-            setTooltip("Door " + prefix + " • " + d.getEnergy() + " energy" + (d.isActivated() ? " • exhausted" : ""));
+            setTooltip("Door " + prefix + " * " + d.getEnergy() + " energy" + (d.isActivated() ? " * exhausted" : ""));
         } else if (modelCell instanceof CardCell) {
             kindLabel.setText("CARD");
             valueLabel.setText("?");
             getStyleClass().add("cell-card");
-            setTooltip("Card cell — draw a card on landing");
+            setTooltip("Card cell - draw a card on landing");
         } else if (modelCell instanceof MonsterCell) {
             MonsterCell mc = (MonsterCell) modelCell;
             kindLabel.setText("STATION");
             valueLabel.setText(mc.getCellMonster().getName());
             getStyleClass().add("cell-monster-cell");
             setTooltip("Monster station: " + mc.getCellMonster().getName()
-                    + " (" + mc.getCellMonster().getRole() + ") • " + mc.getCellMonster().getEnergy() + " energy");
+                    + " (" + mc.getCellMonster().getRole() + ") * " + mc.getCellMonster().getEnergy() + " energy");
         } else if (modelCell instanceof ConveyorBelt) {
             ConveyorBelt cb = (ConveyorBelt) modelCell;
             kindLabel.setText("CONVEYOR");

@@ -146,7 +146,10 @@ public class GameView {
         rollBtn.getStyleClass().add("primary-button");
         powerupBtn.getStyleClass().add("secondary-button");
         quitBtn.getStyleClass().add("secondary-button");
-        controlSection = new VBox(8, rollBtn, powerupBtn, quitBtn);
+        Label cheatHint = new Label("Cheats:  W = teleport to cell 99    E = +100 energy");
+        cheatHint.getStyleClass().add("cheat-hint");
+        cheatHint.setWrapText(true);
+        controlSection = new VBox(8, rollBtn, powerupBtn, quitBtn, cheatHint);
         controlSection.setAlignment(Pos.CENTER);
         controlSection.setPadding(new Insets(4, 0, 0, 0));
 
