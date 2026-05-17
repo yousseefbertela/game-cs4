@@ -25,10 +25,10 @@ public class Game {
 		this.player = selectRandomMonsterByRole(playerRole);
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
-		
+
 		allMonsters.remove(player);
 		allMonsters.remove(opponent);
-		
+
 		Board.setStationedMonsters(allMonsters);
 		board.initializeBoard(DataLoader.readCells());
 	}
@@ -69,7 +69,7 @@ public class Game {
 		return current == player ? opponent : player;
 	}
 
-	public int rollDice() {
+	private int rollDice() {
 		Random rand = new Random();
 		return rand.nextInt(6) + 1;
 	}

@@ -108,10 +108,10 @@ public class Board {
 
 	    for (Card card : originalCards)
 	        expandedCards.addAll(Collections.nCopies(card.getRarity(), card));
-	    
+
 	    originalCards = expandedCards;
 	}
-	
+
 	public static void reloadCards() {
 		cards = new ArrayList<>(originalCards);
 		Collections.shuffle(cards);

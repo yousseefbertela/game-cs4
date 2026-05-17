@@ -3,6 +3,8 @@ package game.gui;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Random;
+
 import game.engine.Board;
 import game.engine.Constants;
 import game.engine.Game;
@@ -30,6 +32,7 @@ public class GameController {
 
     private final PrintStream originalOut = System.out;
     private final ByteArrayOutputStream captured = new ByteArrayOutputStream();
+    private final Random rng = new Random();
 
     public GameController(Main app, Role role) throws IOException {
         this.app = app;
@@ -164,7 +167,7 @@ public class GameController {
             }
         }
 
-        int roll = game.rollDice();
+        int roll = rng.nextInt(6) + 1;
         view.getDiceLabel().setText("Dice: " + roll + "  (" + (cur == game.getPlayer() ? "YOU" : "OPPONENT") + ")");
         view.appendLog(cur.getName() + " rolled " + roll + ".");
 
