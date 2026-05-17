@@ -1,7 +1,27 @@
 package game.engine.cells;
 
-public class ContaminationSock extends TransportCell{
-	public ContaminationSock(String name,int effect){
-		super(name,-(Math.abs(effect)));
+import game.engine.Constants;
+import game.engine.interfaces.CanisterModifier;
+import game.engine.monsters.Monster;
+
+public class ContaminationSock extends TransportCell implements CanisterModifier {
+	
+	public ContaminationSock(String name, int effect) {
+		super(name, effect);
 	}
+
+	@Override
+    public void transport(Monster monster) {
+		super.transport(monster);
+        
+        // Apply slip penalty
+		modifyCanisterEnergy(monster, -Constants.SLIP_PENALTY);
+    }
+
+	@Override
+	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
+		monster.alterEnergy(canisterValue);
+	}
+
 }
+

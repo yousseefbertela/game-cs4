@@ -1,0 +1,369 @@
+/* DoorDasH — JavaFX stylesheet */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-background-color: linear-gradient(to bottom right, #0f1320, #1a2238);
+    -fx-text-fill: #f4f5fb;
+}
+
+.start-root {
+    -fx-background-color: linear-gradient(to bottom right, #1a1830, #2a1a40, #102032);
+}
+
+.start-card, .instructions-card, .end-card {
+    -fx-background-color: rgba(20, 24, 40, 0.92);
+    -fx-background-radius: 18;
+    -fx-border-color: #FFD56B;
+    -fx-border-radius: 18;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 30, 0.15, 0, 8);
+}
+
+.game-title {
+    -fx-font-size: 64px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #FFD56B;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 20, 0.6, 0, 4);
+}
+.game-subtitle {
+    -fx-font-size: 22px;
+    -fx-text-fill: #E6E6E6;
+}
+.tagline {
+    -fx-font-size: 14px;
+    -fx-text-fill: #B7B7C7;
+}
+.section-heading {
+    -fx-font-size: 16px;
+    -fx-text-fill: #FFD56B;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 0;
+}
+.divider {
+    -fx-background-color: rgba(255, 213, 107, 0.5);
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: linear-gradient(#FFD56B, #E2A93B);
+    -fx-text-fill: #1c1106;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 22;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.primary-button:hover { -fx-background-color: linear-gradient(#FFE48A, #F0B94A); }
+.primary-button:disabled { -fx-opacity: 0.55; }
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFD56B;
+    -fx-border-color: #FFD56B;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 9 18;
+    -fx-cursor: hand;
+}
+.secondary-button:hover {
+    -fx-background-color: rgba(255, 213, 107, 0.12);
+}
+.secondary-button.armed {
+    -fx-background-color: #FFD56B;
+    -fx-text-fill: #1c1106;
+    -fx-font-weight: bold;
+}
+
+/* Side toggles */
+.side-toggle {
+    -fx-pref-width: 220;
+    -fx-pref-height: 90;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+}
+.side-scarer {
+    -fx-background-color: rgba(50, 70, 130, 0.45);
+    -fx-text-fill: #9FB5FF;
+    -fx-border-color: #6479C7;
+}
+.side-scarer:selected, .side-scarer:hover {
+    -fx-background-color: linear-gradient(#3D5BD4, #2A3E96);
+    -fx-text-fill: white;
+    -fx-border-color: #FFD56B;
+}
+.side-laugher {
+    -fx-background-color: rgba(130, 70, 50, 0.45);
+    -fx-text-fill: #FFC79F;
+    -fx-border-color: #C76B47;
+}
+.side-laugher:selected, .side-laugher:hover {
+    -fx-background-color: linear-gradient(#E37137, #B14F1E);
+    -fx-text-fill: white;
+    -fx-border-color: #FFD56B;
+}
+
+/* Game header */
+.game-root {
+    -fx-background-color: linear-gradient(to bottom right, #11131e, #1b2236);
+}
+.top-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-background-radius: 10;
+}
+.game-header-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD56B;
+}
+.turn-label { -fx-text-fill: #B0B7CC; -fx-font-size: 14px; }
+.current-player-label { -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold; }
+.dice-label {
+    -fx-text-fill: #FFD56B;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.freeze-banner {
+    -fx-text-fill: #1c1106;
+    -fx-background-color: #6FDDF7;
+    -fx-padding: 4 10;
+    -fx-background-radius: 6;
+    -fx-font-weight: bold;
+}
+.vertical-divider {
+    -fx-background-color: rgba(255, 213, 107, 0.4);
+}
+
+/* Board grid */
+.board-grid {
+    -fx-background-color: rgba(0,0,0,0.35);
+    -fx-background-radius: 10;
+}
+
+/* Cells */
+.cell {
+    -fx-background-color: #1f2a44;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+.cell-index {
+    -fx-font-size: 10px;
+    -fx-text-fill: rgba(255,255,255,0.65);
+    -fx-padding: 2 0 0 4;
+}
+.cell-kind {
+    -fx-font-size: 9px;
+    -fx-text-fill: rgba(0,0,0,0.7);
+    -fx-font-weight: bold;
+}
+.cell-value {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(0,0,0,0.85);
+}
+.cell-monster {
+    -fx-font-size: 9px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.cell-marker {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 4;
+    -fx-background-radius: 4;
+    -fx-text-fill: black;
+}
+.marker-player { -fx-background-color: #FFD56B; }
+.marker-opponent { -fx-background-color: #FF7C7C; }
+.marker-both { -fx-background-color: #C58CFF; -fx-text-fill: white; }
+
+.cell-normal { -fx-background-color: #283555; }
+.cell-normal .cell-kind, .cell-normal .cell-value { -fx-text-fill: #95A2C9; }
+
+.cell-card {
+    -fx-background-color: linear-gradient(#F2C94C, #E2A93B);
+}
+.cell-monster-cell {
+    -fx-background-color: linear-gradient(#C58CFF, #8E5DD2);
+}
+.cell-monster-cell .cell-kind, .cell-monster-cell .cell-value { -fx-text-fill: white; }
+
+.cell-door-scarer {
+    -fx-background-color: linear-gradient(#3D5BD4, #2A3E96);
+}
+.cell-door-scarer .cell-kind, .cell-door-scarer .cell-value { -fx-text-fill: #FFE99B; }
+.cell-door-laugher {
+    -fx-background-color: linear-gradient(#E37137, #B14F1E);
+}
+.cell-door-laugher .cell-kind, .cell-door-laugher .cell-value { -fx-text-fill: #FFEAD3; }
+.cell-door-used {
+    -fx-background-color: linear-gradient(#4a4a52, #2c2c33);
+    -fx-border-color: #777;
+    -fx-border-style: dashed;
+}
+.cell-door-used .cell-kind, .cell-door-used .cell-value { -fx-text-fill: #c0c0c0; }
+
+.cell-conveyor {
+    -fx-background-color: linear-gradient(#3CC59F, #1E9477);
+}
+.cell-conveyor .cell-kind, .cell-conveyor .cell-value { -fx-text-fill: white; }
+.cell-sock {
+    -fx-background-color: linear-gradient(#6E4EF1, #4128B0);
+}
+.cell-sock .cell-kind, .cell-sock .cell-value { -fx-text-fill: #FFE99B; }
+
+.cell-start {
+    -fx-border-color: #FFD56B;
+    -fx-border-width: 3;
+}
+.cell-finish {
+    -fx-border-color: #FF6E6E;
+    -fx-border-width: 3;
+}
+.cell-active {
+    -fx-effect: dropshadow(gaussian, #FFD56B, 14, 0.45, 0, 0);
+}
+
+/* Right side panels */
+.panel-heading {
+    -fx-text-fill: #FFD56B;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 4 0 0 0;
+}
+.monster-panel {
+    -fx-background-color: rgba(0, 0, 0, 0.32);
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+}
+.panel-scarer { -fx-border-color: #6479C7; }
+.panel-laugher { -fx-border-color: #C76B47; }
+.panel-current {
+    -fx-effect: dropshadow(gaussian, #FFD56B, 14, 0.4, 0, 0);
+    -fx-border-color: #FFD56B;
+}
+.monster-name { -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; }
+.monster-type { -fx-text-fill: #D0D6E8; -fx-font-size: 12px; -fx-font-style: italic; }
+.monster-meta { -fx-text-fill: #D0D6E8; -fx-font-size: 12px; }
+.monster-energy { -fx-text-fill: #FFD56B; -fx-font-size: 13px; -fx-font-weight: bold; }
+.monster-status { -fx-text-fill: #FFE099; -fx-font-size: 12px; -fx-font-weight: bold; }
+.role-confused { -fx-text-fill: #FF7C7C; -fx-font-weight: bold; }
+.energy-bar { -fx-accent: #FFD56B; -fx-pref-height: 12; }
+.energy-flash {
+    -fx-effect: dropshadow(gaussian, #FFD56B, 25, 0.7, 0, 0);
+}
+
+/* Card panel */
+.card-panel {
+    -fx-background-color: linear-gradient(#1d2643, #131a30);
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-border-color: #FFD56B;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+.card-name {
+    -fx-text-fill: #FFD56B;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.card-effect {
+    -fx-text-fill: #E6E6E6;
+    -fx-font-size: 12px;
+}
+
+/* Event log + legend */
+.event-log {
+    -fx-background-color: rgba(0, 0, 0, 0.45);
+    -fx-background-radius: 8;
+    -fx-control-inner-background: transparent;
+    -fx-text-fill: white;
+}
+.event-log .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #E6E6E6;
+    -fx-font-size: 11px;
+    -fx-padding: 4 8;
+}
+.event-log .list-cell:filled:selected {
+    -fx-background-color: rgba(255, 213, 107, 0.2);
+}
+.legend-swatch {
+    -fx-background-radius: 4;
+    -fx-border-color: rgba(255,255,255,0.18);
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+}
+.legend-text { -fx-text-fill: #D0D6E8; -fx-font-size: 11px; }
+
+/* Instructions */
+.instructions-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD56B;
+}
+.instructions-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+.instructions-scroll .viewport { -fx-background-color: transparent; }
+.instructions-scroll .content { -fx-background-color: transparent; }
+
+/* End screen */
+.crown { -fx-font-size: 56px; -fx-text-fill: #FFD56B; }
+.victory-title {
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD56B;
+}
+.defeat-title {
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FF7C7C;
+}
+.end-announce {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}
+.end-stat-card {
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+    -fx-min-width: 280;
+}
+.end-stat-header { -fx-text-fill: #FFD56B; -fx-font-weight: bold; -fx-font-size: 13px; }
+.end-stat-name { -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22px; }
+.end-stat-line { -fx-text-fill: #D0D6E8; -fx-font-size: 13px; }
+.end-winner {
+    -fx-border-color: #FFD56B;
+    -fx-effect: dropshadow(gaussian, #FFD56B, 18, 0.5, 0, 0);
+}
+
+/* Dialog */
+.doordash-dialog, .dialog-pane {
+    -fx-background-color: #1c2236;
+}
+.doordash-dialog .header-panel, .dialog-pane .header-panel {
+    -fx-background-color: #2a3052;
+}
+.doordash-dialog .header-panel .label, .dialog-pane .header-panel .label {
+    -fx-text-fill: #FFD56B;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.doordash-dialog .content.label, .dialog-pane .content.label {
+    -fx-text-fill: #E6E6E6;
+    -fx-font-size: 13px;
+}
+.doordash-dialog .button-bar .button, .dialog-pane .button-bar .button {
+    -fx-background-color: linear-gradient(#FFD56B, #E2A93B);
+    -fx-text-fill: #1c1106;
+    -fx-font-weight: bold;
+}

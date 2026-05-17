@@ -1,11 +1,14 @@
 package game.engine.exceptions;
 
+@SuppressWarnings("serial")
 public abstract class GameActionException extends Exception {
+
 	public GameActionException() {
-	    super();
+		super();
 	}
+
 	public GameActionException(String message) {
-	    super(message);
+		super(message);
 	}
 
 }
