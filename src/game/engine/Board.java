@@ -109,11 +109,16 @@ public class Board {
 	    for (Card card : originalCards)
 	        expandedCards.addAll(Collections.nCopies(card.getRarity(), card));
 
-	    originalCards = expandedCards;
+	    cards = expandedCards;
 	}
 
 	public static void reloadCards() {
-		cards = new ArrayList<>(originalCards);
+		ArrayList<Card> expandedCards = new ArrayList<>();
+
+		for (Card card : originalCards)
+			expandedCards.addAll(Collections.nCopies(card.getRarity(), card));
+
+		cards = expandedCards;
 		Collections.shuffle(cards);
     }
 	
