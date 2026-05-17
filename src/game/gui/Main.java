@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         this.primaryStage = stage;
         stage.setTitle("DoorDasH: Scare vs Laugh Touchdown");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setOnCloseRequest(e -> {
             javafx.application.Platform.exit();
             System.exit(0);
@@ -26,6 +26,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, STAGE_WIDTH, STAGE_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("/game/gui/styles.css").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
 
         String auto = System.getProperty("doordash.auto");
         if (auto != null) {

@@ -165,7 +165,7 @@ public class GameController {
         }
 
         int roll = game.rollDice();
-        view.getDiceLabel().setText("Dice: " + roll + "  (" + cur.getName() + ")");
+        view.getDiceLabel().setText("Dice: " + roll + "  (" + (cur == game.getPlayer() ? "YOU" : "OPPONENT") + ")");
         view.appendLog(cur.getName() + " rolled " + roll + ".");
 
         boolean cardCellLanded = isCardCellLandable(cur, roll);
@@ -196,7 +196,7 @@ public class GameController {
         view.getPowerupBtn().getStyleClass().remove("armed");
 
         if (frozenBefore) {
-            view.getFreezeBanner().setText(cur.getName() + " was FROZEN - turn skipped!");
+            view.getFreezeBanner().setText((cur == game.getPlayer() ? "YOU" : "OPPONENT") + " was FROZEN - turn skipped!");
             view.getFreezeBanner().setVisible(true);
             view.getFreezeBanner().setManaged(true);
             view.appendLog(cur.getName() + " was frozen and skipped their turn.");
@@ -370,9 +370,10 @@ public class GameController {
         boolean playerTurn = (cur == game.getPlayer());
         playerPanel.setCurrentTurn(playerTurn);
         opponentPanel.setCurrentTurn(!playerTurn);
-        view.getCurrentPlayerLabel().setText("Current: " + cur.getName()
-                + (playerTurn ? " (YOU)" : " (OPPONENT)") + "  vs  "
-                + (playerTurn ? game.getOpponent().getName() : game.getPlayer().getName()));
+        view.getCurrentPlayerLabel().setText("Current: "
+                + (playerTurn ? "YOU" : "OPPONENT")
+                + "  vs  "
+                + (playerTurn ? "OPPONENT" : "YOU"));
 
         view.getRollBtn().setText(playerTurn ? "Roll Dice" : "Roll Dice (Opponent's turn)");
         renderMonsterMarkers();

@@ -41,13 +41,15 @@ public class GameView {
     public GameView() {
         root = new BorderPane();
         root.getStyleClass().add("game-root");
-        root.setPadding(new Insets(12));
+        root.setPadding(new Insets(0));
 
         root.setTop(buildTopBar());
-        root.setCenter(buildBoard());
+        StackPane boardWrap = new StackPane(buildBoard());
+        boardWrap.setPadding(new Insets(8));
+        boardWrap.getStyleClass().add("board-wrap");
+        root.setCenter(boardWrap);
         root.setRight(buildSidePanel());
         root.setLeft(buildLeftPanel());
-        root.setBottom(buildBottomBar());
     }
 
     public BorderPane getRoot() { return root; }
@@ -129,9 +131,11 @@ public class GameView {
 
     private VBox buildSidePanel() {
         rightStack = new VBox(12);
-        rightStack.setPadding(new Insets(8, 8, 8, 8));
-        rightStack.setPrefWidth(320);
+        rightStack.setPadding(new Insets(10));
+        rightStack.setPrefWidth(340);
+        rightStack.setMinWidth(320);
         rightStack.setAlignment(Pos.TOP_CENTER);
+        rightStack.getStyleClass().add("side-panel");
 
         Label cardHeading = new Label("Last Card Drawn");
         cardHeading.getStyleClass().add("panel-heading");
@@ -146,26 +150,32 @@ public class GameView {
         rollBtn.getStyleClass().add("primary-button");
         powerupBtn.getStyleClass().add("secondary-button");
         quitBtn.getStyleClass().add("secondary-button");
-        Label cheatHint = new Label("Cheats:  W = teleport to cell 99    E = +100 energy");
-        cheatHint.getStyleClass().add("cheat-hint");
-        cheatHint.setWrapText(true);
-        controlSection = new VBox(8, rollBtn, powerupBtn, quitBtn, cheatHint);
+        rollBtn.setMaxWidth(Double.MAX_VALUE);
+        powerupBtn.setMaxWidth(Double.MAX_VALUE);
+        quitBtn.setMaxWidth(Double.MAX_VALUE);
+        controlSection = new VBox(8, rollBtn, powerupBtn, quitBtn);
         controlSection.setAlignment(Pos.CENTER);
         controlSection.setPadding(new Insets(4, 0, 0, 0));
 
-        rightStack.getChildren().addAll(cardSection, controlSection);
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+
+        rightStack.getChildren().addAll(cardSection, spacer, controlSection);
         return rightStack;
     }
 
     private VBox buildLeftPanel() {
         VBox box = new VBox(8);
-        box.setPadding(new Insets(8));
-        box.setPrefWidth(280);
+        box.setPadding(new Insets(10));
+        box.setPrefWidth(300);
+        box.setMinWidth(280);
+        box.getStyleClass().add("side-panel");
 
         Label heading = new Label("Event log");
         heading.getStyleClass().add("panel-heading");
         eventLog.getStyleClass().add("event-log");
-        eventLog.setPrefHeight(640);
+        VBox.setVgrow(eventLog, javafx.scene.layout.Priority.ALWAYS);
+        eventLog.setMaxHeight(Double.MAX_VALUE);
 
         Label legendHeading = new Label("Legend");
         legendHeading.getStyleClass().add("panel-heading");
@@ -194,12 +204,6 @@ public class GameView {
         l.getStyleClass().add("legend-text");
         HBox h = new HBox(8, swatch, l);
         h.setAlignment(Pos.CENTER_LEFT);
-        return h;
-    }
-
-    private HBox buildBottomBar() {
-        HBox h = new HBox();
-        h.setPadding(new Insets(6));
         return h;
     }
 
