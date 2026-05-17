@@ -343,17 +343,12 @@ public class GameController {
     }
 
     private void confirmQuit() {
-        javafx.scene.control.Alert a = new javafx.scene.control.Alert(
-                javafx.scene.control.Alert.AlertType.CONFIRMATION,
+        boolean ok = Dialogs.confirm("Quit current game?",
                 "Return to the main menu and abandon this game?");
-        a.setHeaderText("Quit current game?");
-        a.getDialogPane().getStylesheets().add(getClass().getResource("/game/gui/styles.css").toExternalForm());
-        a.showAndWait().ifPresent(bt -> {
-            if (bt == javafx.scene.control.ButtonType.OK) {
-                System.setOut(originalOut);
-                app.showStart();
-            }
-        });
+        if (ok) {
+            System.setOut(originalOut);
+            app.showStart();
+        }
     }
 
 }
